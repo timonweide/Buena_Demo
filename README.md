@@ -9,16 +9,18 @@ Ein produktionsnaher Streamlit-Prototyp der Buenas Akquisitions- und Post-Merger
 
 ## Setup
 
+Empfohlener Zugang über Streamlit Community Cloud: https://buena-piloto.streamlit.app
+
+Ansonsten über lokal geklontes repository:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
-Öffnet auf `http://localhost:8501` — direkt auf dem Seller Portal.
-
-**Anthropic API Key (optional, für Claude-Parsing und AI Executive Summary):**
+Anthropic API Key (optional, für Claude-Parsing und AI Executive Summary):
 
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-api03-..."
