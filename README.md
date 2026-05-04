@@ -114,7 +114,7 @@ Gesperrte Pages zeigen einen Stage-Gate-Screen mit Hinweis welche Stage erforder
   - Schlüsselperson-Risiko → Bindungs-Task auf Day 1–7 priorisiert + Earn-Out-Task neu
   - Customer-Konzentration > 35% → Top-Customer-Tour vorgezogen + Vertragsverlängerung-Task neu
   - Übergangsperiode < 3 Monate → Knowledge-Transfer-Sprint komprimiert
-  - >30% Mitarbeiter über 60J → Wissens-Transfer-Programm neu
+  - Mehr als 30% Mitarbeiter über 60J → Wissens-Transfer-Programm neu
   - Komplexe Eigentümerstruktur → WEG-Beirats-Konsens-Task neu
 - Auto-generierte und auto-modifizierte Tasks sind transparent mit `[AUTO]` markiert
 - Toggle zwischen Basis-Playbook und Auto-Plan mit Expander der angewendeten Regeln
