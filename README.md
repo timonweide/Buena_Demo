@@ -55,37 +55,37 @@ Gesperrte Pages zeigen einen Stage-Gate-Screen mit Hinweis welche Stage erforder
 
 ## Features
 
-### Seller Portal
+### 1. Seller Portal
 - Schema-getriebenes Formular aus `dd_schema.json` — Felder ändern = JSON ändern, kein Code
 - 7 Conditional-Logic-Regeln (z.B. Folgefragen bei mehreren Gesellschaftern oder Schlüsselperson-Risiko)
 - Validerung: Portfolio-Anteile müssen 100% ergeben, Pflichtfelder werden geprüft
 - BWA-Upload (Excel und PDF) wird automatisch ins Target Detail der entsprechenden Ziel-Pipeline übertragen
 - Submit ohne 100% Vollständigkeit möglich — Target landet als *Outreach* mit Completion-Prozentsatz
 
-### Dashboard
-#### Overview
+### 2. Dashboard
+##### 2.1. Overview
 - Auswahl verschiedener Targets
 - Überblick der wichtigsten KPIs des aktuellen Targets - basierend auf der aktuellen Stage
 - Darstellung der Pipeline in einem Kanban-Board
-#### IC Memo Export (PDF)
+##### 2.2. IC Memo Export (PDF)
 - Buena-Branded Design: Quatrefoil-Logo, Helvetica, schwarz/weiß, minimalistisch
 - AI-generierte Executive Summary via Claude API (Fallback: strukturiertes Template)
 - Stage-aware: Outreach ohne LBO/PMI, DD mit LBO, Offer Accepted mit vollem PMI-Plan
 - Sektionen: Executive Summary, Company Profile, Investment Thesis, Risk Analysis, Financial Profile, LBO Returns, PMI Plan Summary, Recommendation
 
-### Target Detail
-#### Scoring Engine
+### 3. Target Detail
+##### 3.1. Scoring Engine
 - 4 Dimensionen: Strategic Fit, Financial Health, Integration Complexity, Synergy Potential
 - 14 Sub-Scores, jeder deterministisch aus DD-Daten berechnet
 - Jeder Sub-Score hat eine nachvollziehbare Begründung und die Source-Question-ID
 - Editable Top-Level-Weights über Sidebar-Slider, Scores updaten überall live
 - Side-by-Side-Vergleich von 2–3 Targets mit Spider-Chart-Overlay
 - Alle Scores und Flags werden live aus den Target-Daten berechnet
-#### Flags
+##### 3.2. Flags
 - Live aus Target-Daten berechnet (nicht im JSON gespeichert)
 - Sortiert nach Schwere: Red → Yellow → Green
 - Automatischer Knock-Out-Banner wenn kritische DD-Kriterien positiv beantwortet wurden
-#### AI-Parser (BWA → Buena P&L)
+##### 3.3. AI-Parser (BWA → Buena P&L)
 - Dual-Mode: echter Claude API Call wenn `ANTHROPIC_API_KEY` gesetzt, sonst deterministischer Mock
 - Unterstützt Excel (.xlsx) und PDF Formate
 - Vom Seller im Portal hochgeladene BWA wird automatisch importiert
@@ -97,7 +97,7 @@ Gesperrte Pages zeigen einen Stage-Gate-Screen mit Hinweis welche Stage erforder
 - Vergleich Self-Reported (DD) vs. AI-parsed (BWA) mit Δ-Spalte und Warnung bei >20% Abweichung
 - Approved P&L wird im LBO Model als alternative Datenquelle angeboten
 
-### LBO Model
+### 4. LBO Model
 - Year-by-Year Projektion für 3–20 Jahre (indikativ, da Buena Long-Term-Hold Model verfolgt)
 - Synergien hinzufügen in drei Phasen: Y1, Y2, Run-Rate ab Y3
 - Earn-Out mit Threshold-basiertem Trigger — finanziert aus FCF oder neuem Equity
@@ -106,7 +106,7 @@ Gesperrte Pages zeigen einen Stage-Gate-Screen mit Hinweis welche Stage erforder
 - Settings werden pro Target und Session in `session_state` gespeichert
 - Toggle: AI-parsed BWA-Werte vs. Self-Reported-DD Werte als Basis
 
-### PMI Playbook
+### 5. PMI Playbook
 - 3 Workstreams x 19 Base-Tasks mit Owner-Selektion, Status-Tracking, eigenen Notizen
 - **Auto-Plan-Generation:** 7 DD-Regeln passen das Playbook basierend auf den Verkäufer DD Antworten dynamisch an:
   - Excel/Word-Stack → zusätzliche Datenrekonstruktion-Tasks
@@ -169,15 +169,15 @@ Scores werden live berechnet — keine statischen Werte im JSON.
 
 ## Design-Prinzipien
 
-**Was berechnet werden kann, wird nicht abgefragt.** Abgeleitete Metriken (Units/PM, EBITDA-Marge, Revenue CAGR, AR%-Umsatz) werden automatisch berechnet und im Dashboard angezeigt — der Seller füllt nur Roh-Werte aus und hat somit weniger Aufwand.
+- **Was berechnet werden kann, wird nicht abgefragt.** Abgeleitete Metriken (Units/PM, EBITDA-Marge, Revenue CAGR, AR%-Umsatz) werden automatisch berechnet und im Dashboard angezeigt — der Seller füllt nur Roh-Werte aus und hat somit weniger Aufwand.
 
-**Schema-getrieben, nicht hardcoded.** DD-Fragen, PMI-Tasks und Auto-Plan-Regeln liegen in JSON/Python-Datenstrukturen. Neue Fragen, Tasks oder Risiko-Regeln hinzufügen bedeutet JSON oder eine Funktion ergänzen — kein UI-Code anfassen.
+- **Schema-getrieben, nicht hardcoded.** DD-Fragen, PMI-Tasks und Auto-Plan-Regeln liegen in JSON/Python-Datenstrukturen. Neue Fragen, Tasks oder Risiko-Regeln hinzufügen bedeutet JSON oder eine Funktion ergänzen — kein UI-Code anfassen.
 
-**Stage-getriebene UX.** Kein LBO ohne DD-Daten. Kein PMI ohne Offer. Pages werden durch Pipeline-Stage freigeschaltet, nicht durch manuelle Entscheidungen.
+- **Stage-getriebene UX.** Kein LBO ohne DD-Daten. Kein PMI ohne Offer. Pages werden durch Pipeline-Stage freigeschaltet, nicht durch manuelle Entscheidungen.
 
-**Audience-aware.** Seller sieht keine internen Begriffe, keine Flags, keine Scores. Das interne Team sieht alles. Gleiche Datenbasis, zwei verschiedene Interfaces.
+- **Audience-aware.** Seller sieht keine internen Begriffe, keine Flags, keine Scores. Das interne Team sieht alles. Gleiche Datenbasis, zwei verschiedene Interfaces.
 
-**Transparent über Grenzen.** Persistenz läuft über `session_state` — stirbt mit dem Browser-Tab. Production würde SQLite oder Postgres brauchen. Die Scoring-Gewichte und Auto-Plan-Regeln sind aus Recherche kalibriert, nicht aus Buena-Realität. Das Tool ist darauf ausgelegt, mit echten Daten zu lernen.
+- **Transparent über Grenzen.** Persistenz läuft über `session_state` — stirbt mit dem Browser-Tab. Production würde SQLite oder Postgres brauchen. Die Scoring-Gewichte und Auto-Plan-Regeln sind aus Recherche kalibriert, nicht aus Buena-Realität. Das Tool ist darauf ausgelegt, mit echten Daten zu lernen.
 
 ---
 
