@@ -1,0 +1,218 @@
+{
+  "workstreams": [
+    {
+      "id": "ws1",
+      "name": "Software & Data Migration",
+      "icon": "💻",
+      "color": "#3B82F6",
+      "description": "Migration der Source-Systeme auf die Buena-Plattform inkl. Datenexport, Mapping, Sandbox-Test, Cut-Over und Decommissioning.",
+      "tasks": [
+        {
+          "id": "1.1",
+          "name": "IT-Audit der Source-Systeme",
+          "default_owner": "PMI Lead + Buena Tech",
+          "timing_days_after_close": "1-7",
+          "dependencies": "Access granted",
+          "acceptance_criteria": "Vollständiges Inventory: Software-Versionen, Datenmodell, Custom-Felder, User-Accounts, Schnittstellen dokumentiert.",
+          "notes": "Use Buena IT-Audit-Template. Achten auf: Datenbanken-Versionen, Lizenzlaufzeiten, Custom-Reports."
+        },
+        {
+          "id": "1.2",
+          "name": "Datenexport-Plan & Sandbox-Setup",
+          "default_owner": "Buena Tech",
+          "timing_days_after_close": "5-14",
+          "dependencies": "1.1 abgeschlossen",
+          "acceptance_criteria": "Test-Export von 100 Datensätzen pro Entitäts-Typ funktioniert; Sandbox steht.",
+          "notes": "Mindestens 7 Jahre WEG-Protokolle gesetzlich erforderlich. Backup vor jedem Export."
+        },
+        {
+          "id": "1.3",
+          "name": "Datenmapping Source → Buena Schema",
+          "default_owner": "PMI Lead",
+          "timing_days_after_close": "10-21",
+          "dependencies": "1.2",
+          "acceptance_criteria": "Field-by-Field-Mapping dokumentiert; Edge Cases identifiziert; Data-Quality-Issues quantifiziert.",
+          "notes": "Häufige Edge Cases: Custom-Konten-Rahmen, frei-formatierte Adressfelder, historische Vertragsänderungen."
+        },
+        {
+          "id": "1.4",
+          "name": "Sandbox-Migration mit Reconciliation",
+          "default_owner": "Buena Tech",
+          "timing_days_after_close": "21-35",
+          "dependencies": "1.3",
+          "acceptance_criteria": "Testweise Migration auf Sandbox; Reconciliation 99.5%+ über alle Konten und Verträge.",
+          "notes": "Reconcile pro WEG einzeln. Discrepancies dokumentieren und mit Source-System-User klären."
+        },
+        {
+          "id": "1.5",
+          "name": "Parallelbetrieb-Phase",
+          "default_owner": "PMI Lead",
+          "timing_days_after_close": "35-60",
+          "dependencies": "1.4",
+          "acceptance_criteria": "Beide Systeme laufen parallel; manueller Reconcile wöchentlich; alle User auf Buena onboarded.",
+          "notes": "Kritischer Risk-Mitigation-Step. Ohne diese Phase = hohes Datenverlust-Risiko bei Cut-Over."
+        },
+        {
+          "id": "1.6",
+          "name": "Cut-Over auf Buena-Plattform",
+          "default_owner": "Buena Tech + PMI Lead",
+          "timing_days_after_close": "60",
+          "dependencies": "1.5",
+          "acceptance_criteria": "Source-System abgeschaltet; alle User auf Buena; Tickets in ersten 7 Tagen unter Schwellwert.",
+          "notes": "Cut-Over am Wochenende. Hotline für Mitarbeiter in ersten 5 Werktagen verstärkt."
+        },
+        {
+          "id": "1.7",
+          "name": "Source-System-Decommission",
+          "default_owner": "Buena Tech",
+          "timing_days_after_close": "90+",
+          "dependencies": "1.6 + 30 Tage stabiler Betrieb",
+          "acceptance_criteria": "Lizenz gekündigt; Daten archiviert (10J Aufbewahrung); Hardware außer Betrieb.",
+          "notes": "Nicht zu früh. Bei Bedarf erstmal nur Lese-Zugriff für Audit-Zwecke."
+        }
+      ]
+    },
+    {
+      "id": "ws2",
+      "name": "People & Org",
+      "icon": "👥",
+      "color": "#10B981",
+      "description": "Mitarbeiter-Integration: Welcome, Skill-Mapping, Org-Redesign, Compensation, Schlüsselperson-Bindung, Backoffice-Konsolidierung.",
+      "tasks": [
+        {
+          "id": "2.1",
+          "name": "All-Hands Welcome Meeting & Buena Intro",
+          "default_owner": "VP Property Management",
+          "timing_days_after_close": "1",
+          "dependencies": "Closing",
+          "acceptance_criteria": "Alle Mitarbeiter informiert; Buena-Vision, Jobs-Garantie für 12 Monate, klarer Q&A.",
+          "notes": "Tag 1 entscheidet die Stimmung. Linus persönlich, nicht delegieren."
+        },
+        {
+          "id": "2.2",
+          "name": "1:1 Interviews mit allen Mitarbeitern (Skill-Mapping)",
+          "default_owner": "PMI Lead",
+          "timing_days_after_close": "2-21",
+          "dependencies": "2.1",
+          "acceptance_criteria": "Skill-Matrix für alle FTEs; Engagement-Score pro Person; Risiko-Leute identifiziert.",
+          "notes": "30 Min pro Person. Leitfaden: Was machst du, was würdest du gerne machen, was funktioniert nicht?"
+        },
+        {
+          "id": "2.3",
+          "name": "Org-Redesign & Role-Mapping zur Buena-Struktur",
+          "default_owner": "PMI Lead + VP",
+          "timing_days_after_close": "21-35",
+          "dependencies": "2.2",
+          "acceptance_criteria": "Neuer Org-Chart; jede Person hat klar definierte Rolle; Reporting-Lines etabliert.",
+          "notes": "Nicht über-engineering. Erstmal funktionierende Struktur, Optimierung in Monat 4-6."
+        },
+        {
+          "id": "2.4",
+          "name": "Compensation-Harmonisierung",
+          "default_owner": "Buena People Team",
+          "timing_days_after_close": "30-60",
+          "dependencies": "2.3",
+          "acceptance_criteria": "Gehaltsstruktur an Buena-Bands angepasst; bei Aufschlägen klare Begründung; Employee-Buy-In >85%.",
+          "notes": "Falls Source-Gehälter über Buena-Bands: Grandfathering, keine Kürzungen."
+        },
+        {
+          "id": "2.5",
+          "name": "Schlüsselperson-Bindung",
+          "default_owner": "PMI Lead + VP",
+          "timing_days_after_close": "1-30",
+          "dependencies": "DD-Flag aus 5.8",
+          "acceptance_criteria": "Schlüsselpersonen identifiziert; Bindungsverträge unterzeichnet (Earn-Out, Boni, Equity-Anteile).",
+          "notes": "Falls in DD identifiziert: Bindung MUSS pre-Closing oder bei Closing fixiert werden, nicht später."
+        },
+        {
+          "id": "2.6",
+          "name": "Backoffice-Konsolidierung-Plan (Buchhaltung → Buena Shared Service)",
+          "default_owner": "PMI Lead + Buena CFO",
+          "timing_days_after_close": "60-120",
+          "dependencies": "1.6, 2.3",
+          "acceptance_criteria": "Buchhaltung-FTEs entweder zu Shared Service migriert oder andere Rollen zugewiesen; Cost-Save quantifiziert.",
+          "notes": "Häufiger Margenhebel. Aber nicht in Monat 1 — erst Stabilität sicherstellen."
+        }
+      ]
+    },
+    {
+      "id": "ws3",
+      "name": "Customer & Pricing",
+      "icon": "🤝",
+      "color": "#F59E0B",
+      "description": "Kunden-Kommunikation, WEG-Beirats-Briefings, Top-Customer-Tour, Pricing-Audit, Vertragsrenegotation, Cross-Sell-Pilot.",
+      "tasks": [
+        {
+          "id": "3.1",
+          "name": "Owner Communication Letter (Brand Transition)",
+          "default_owner": "PMI Lead + Buena Marketing",
+          "timing_days_after_close": "1-3",
+          "dependencies": "Closing",
+          "acceptance_criteria": "Letter an alle Eigentümer raus; Hotline aufgesetzt; Inbound innerhalb 24h beantwortet.",
+          "notes": "Tonalität: Stabilität, Service-Upgrade, gleiche Ansprechpartner. Nicht: 'Wir sind jetzt ein Konzern'."
+        },
+        {
+          "id": "3.2",
+          "name": "WEG-Beirats-Briefing-Sessions",
+          "default_owner": "PMI Lead + lokaler Verwalter",
+          "timing_days_after_close": "7-30",
+          "dependencies": "3.1",
+          "acceptance_criteria": "Alle WEG-Beiräte (>20 Units) hatten Briefing; Q&A-Log dokumentiert; identifizierte Concerns priorisiert.",
+          "notes": "WEG-Beiräte sind Multiplikatoren. Bei Verlust = Verwaltungswechsel-Risiko."
+        },
+        {
+          "id": "3.3",
+          "name": "Top-10-Kunden Personal-Visit-Tour",
+          "default_owner": "PMI Lead + VP",
+          "timing_days_after_close": "14-45",
+          "dependencies": "3.1",
+          "acceptance_criteria": "Top-10 nach Umsatz persönlich besucht; Beziehungs-Score erhoben; Risiken/Chancen dokumentiert.",
+          "notes": "Bei Customer-Concentration-Flag aus DD: doppelt so viel Aufmerksamkeit auf Top-3."
+        },
+        {
+          "id": "3.4",
+          "name": "Pricing-Audit (Identifizierung Under-Priced Verträge)",
+          "default_owner": "PMI Lead",
+          "timing_days_after_close": "30-60",
+          "dependencies": "1.3 (Vertragsdaten in Buena)",
+          "acceptance_criteria": "Pricing-Tier pro Vertrag relativ zu Buena-Benchmark; Top-20 Underpriced-Liste mit € Upside.",
+          "notes": "Häufiger Quick Win bei Targets mit letzter Preiserhöhung > 3 Jahre."
+        },
+        {
+          "id": "3.5",
+          "name": "Vertragsrenegotation für unter-bepreiste Verträge",
+          "default_owner": "PMI Lead + lokaler Verwalter",
+          "timing_days_after_close": "60-180",
+          "dependencies": "3.4",
+          "acceptance_criteria": "Mindestens 50% der Top-20 Underpriced auf Markt-Niveau; quantifizierter Revenue-Lift.",
+          "notes": "Schrittweise. Aggressive Erhöhung = Kündigungsrisiko. Lieber +5%/Jahr über 2 Jahre als +12% einmalig."
+        },
+        {
+          "id": "3.6",
+          "name": "Cross-Sell-Pilot (Insurance/Energy Adjacencies)",
+          "default_owner": "PMI Lead + Adjacency Lead",
+          "timing_days_after_close": "90-180",
+          "dependencies": "3.1, 3.2",
+          "acceptance_criteria": "Mindestens 1 Adjacency-Produkt pilot-getestet bei 10% der Owner; Conversion-Rate gemessen.",
+          "notes": "Erst wenn Stabilität da ist (Tickets < Schwellwert). Nicht zu früh = Vertrauensverlust."
+        }
+      ]
+    }
+  ],
+  "owner_options": [
+    "PMI Lead",
+    "PMI Lead + VP",
+    "PMI Lead + Buena Tech",
+    "PMI Lead + Buena CFO",
+    "PMI Lead + Buena Marketing",
+    "PMI Lead + lokaler Verwalter",
+    "PMI Lead + Adjacency Lead",
+    "VP Property Management",
+    "Buena Tech",
+    "Buena Tech + PMI Lead",
+    "Buena People Team",
+    "Buena CFO",
+    "Lokaler Geschäftsführer",
+    "Sonstige (siehe Notiz)"
+  ]
+}

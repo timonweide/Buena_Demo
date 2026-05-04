@@ -1,0 +1,265 @@
+{
+  "targets": [
+    {
+      "id": "tgt_001",
+      "name": "Hausverwaltung Müller GmbH",
+      "location": "München",
+      "status": "DD",
+      "intake_completed_pct": 100,
+      "created_at": "2026-04-12",
+      "last_updated": "2026-04-28",
+      "stage_history": [
+        {"stage": "Outreach", "entered_at": "2026-04-12"},
+        {"stage": "DD", "entered_at": "2026-04-22"}
+      ],
+      "company_basics": {
+        "founded": 1987,
+        "legal_form": "GmbH",
+        "fte_total": 18,
+        "shareholders": 2,
+        "majority_shareholder": true,
+        "owner_age": 67,
+        "sale_motivation": "Nachfolge",
+        "transition_period": "12-24 Monate"
+      },
+      "portfolio": {
+        "units_total": 2800,
+        "weg_pct": 60,
+        "miet_pct": 30,
+        "sondereig_pct": 10,
+        "gewerbe_pct": 0,
+        "weg_count": 65,
+        "geo_spread_km": 35,
+        "main_location_concentration": true
+      },
+      "customers": {
+        "active_contracts": 78,
+        "top1_pct": 8,
+        "top3_pct": 18,
+        "avg_contract_years": 6.5,
+        "cancellation_months": 12,
+        "nrr_12m": 96,
+        "contracts_lost_24m": 3,
+        "units_lost_24m": 110,
+        "stickiness_pct": 72,
+        "last_price_increase_year": 2021,
+        "last_price_increase_pct": 3
+      },
+      "operations": {
+        "primary_software": "Domus",
+        "deployment": "Cloud",
+        "software_age_years": 4,
+        "owner_portal": false,
+        "digital_owner_pct": 45,
+        "banking_integration": "Halb-automatisch",
+        "accounting_internal": true,
+        "tool_count": 5,
+        "it_documentation": true
+      },
+      "people": {
+        "fte_property_manager": 8,
+        "fte_accounting": 4,
+        "fte_other": 6,
+        "avg_pm_salary": 58000,
+        "personnel_cost_ratio": 62,
+        "turnover_12m_pct": 12,
+        "open_vacancies": 1,
+        "key_person_risk": false,
+        "employees_over_60": 2
+      },
+      "financials": {
+        "revenue_y1": 1850000,
+        "revenue_y2": 1810000,
+        "revenue_y3": 1780000,
+        "ebitda_y1": 74000,
+        "ebitda_y2": 95000,
+        "ebitda_y3": 102000,
+        "existing_debt": 0,
+        "ar_over_90d": 28000,
+        "trustee_funds": 1200000
+      },
+      "knockouts": {
+        "weg_proceedings": false,
+        "gf_recalled": false,
+        "insolvency": false,
+        "labor_lawsuits": false,
+        "trustee_loss": false,
+        "gdpr_violations": false
+      }
+    },
+    {
+      "id": "tgt_002",
+      "name": "Berliner Immobilien Service GmbH",
+      "location": "Berlin",
+      "status": "Offer Accepted",
+      "intake_completed_pct": 100,
+      "created_at": "2026-03-08",
+      "last_updated": "2026-04-25",
+      "stage_history": [
+        {"stage": "Outreach", "entered_at": "2026-03-08"},
+        {"stage": "DD", "entered_at": "2026-03-20"},
+        {"stage": "Offer Accepted", "entered_at": "2026-04-15"}
+      ],
+      "company_basics": {
+        "founded": 2003,
+        "legal_form": "GmbH",
+        "fte_total": 32,
+        "shareholders": 5,
+        "majority_shareholder": false,
+        "owner_age": 54,
+        "sale_motivation": "Strategischer Exit",
+        "transition_period": "3-12 Monate"
+      },
+      "portfolio": {
+        "units_total": 5200,
+        "weg_pct": 20,
+        "miet_pct": 70,
+        "sondereig_pct": 10,
+        "gewerbe_pct": 25,
+        "weg_count": 28,
+        "geo_spread_km": 80,
+        "main_location_concentration": true
+      },
+      "customers": {
+        "active_contracts": 42,
+        "top1_pct": 22,
+        "top3_pct": 45,
+        "avg_contract_years": 4.2,
+        "cancellation_months": 6,
+        "nrr_12m": 94,
+        "contracts_lost_24m": 4,
+        "units_lost_24m": 280,
+        "stickiness_pct": 58,
+        "last_price_increase_year": 2024,
+        "last_price_increase_pct": 4
+      },
+      "operations": {
+        "primary_software": "Karthago",
+        "deployment": "On-Prem",
+        "software_age_years": 11,
+        "owner_portal": true,
+        "digital_owner_pct": 72,
+        "banking_integration": "Vollautomatisch via API",
+        "accounting_internal": true,
+        "tool_count": 7,
+        "it_documentation": true
+      },
+      "people": {
+        "fte_property_manager": 14,
+        "fte_accounting": 6,
+        "fte_other": 12,
+        "avg_pm_salary": 62000,
+        "personnel_cost_ratio": 58,
+        "turnover_12m_pct": 18,
+        "open_vacancies": 2,
+        "key_person_risk": true,
+        "employees_over_60": 3
+      },
+      "financials": {
+        "revenue_y1": 4100000,
+        "revenue_y2": 3850000,
+        "revenue_y3": 3520000,
+        "ebitda_y1": 328000,
+        "ebitda_y2": 285000,
+        "ebitda_y3": 246000,
+        "existing_debt": 450000,
+        "ar_over_90d": 95000,
+        "trustee_funds": 3800000
+      },
+      "knockouts": {
+        "weg_proceedings": false,
+        "gf_recalled": false,
+        "insolvency": false,
+        "labor_lawsuits": false,
+        "trustee_loss": false,
+        "gdpr_violations": false
+      }
+    },
+    {
+      "id": "tgt_003",
+      "name": "NordImmo Verwaltung",
+      "location": "Hamburg",
+      "status": "Outreach",
+      "intake_completed_pct": 65,
+      "created_at": "2026-04-22",
+      "last_updated": "2026-04-29",
+      "stage_history": [
+        {"stage": "Outreach", "entered_at": "2026-04-22"}
+      ],
+      "company_basics": {
+        "founded": 1995,
+        "legal_form": "Einzelunternehmen",
+        "fte_total": 9,
+        "shareholders": 1,
+        "majority_shareholder": true,
+        "owner_age": 71,
+        "sale_motivation": "Nachfolge",
+        "transition_period": "<3 Monate"
+      },
+      "portfolio": {
+        "units_total": 1200,
+        "weg_pct": 50,
+        "miet_pct": 50,
+        "sondereig_pct": 0,
+        "gewerbe_pct": 5,
+        "weg_count": 31,
+        "geo_spread_km": 350,
+        "main_location_concentration": false
+      },
+      "customers": {
+        "active_contracts": 38,
+        "top1_pct": 12,
+        "top3_pct": 28,
+        "avg_contract_years": 8.0,
+        "cancellation_months": 12,
+        "nrr_12m": 98,
+        "contracts_lost_24m": 1,
+        "units_lost_24m": 25,
+        "stickiness_pct": 88,
+        "last_price_increase_year": 2018,
+        "last_price_increase_pct": 2
+      },
+      "operations": {
+        "primary_software": "Excel/Word",
+        "deployment": "On-Prem",
+        "software_age_years": 0,
+        "owner_portal": false,
+        "digital_owner_pct": 25,
+        "banking_integration": "Manuell",
+        "accounting_internal": false,
+        "tool_count": 3,
+        "it_documentation": false
+      },
+      "people": {
+        "fte_property_manager": 5,
+        "fte_accounting": 1,
+        "fte_other": 3,
+        "avg_pm_salary": 51000,
+        "personnel_cost_ratio": 71,
+        "turnover_12m_pct": 8,
+        "open_vacancies": 0,
+        "key_person_risk": true,
+        "employees_over_60": 4
+      },
+      "financials": {
+        "revenue_y1": 720000,
+        "revenue_y2": 705000,
+        "revenue_y3": 690000,
+        "ebitda_y1": 43000,
+        "ebitda_y2": 49000,
+        "ebitda_y3": 52000,
+        "existing_debt": 0,
+        "ar_over_90d": 8000,
+        "trustee_funds": 580000
+      },
+      "knockouts": {
+        "weg_proceedings": false,
+        "gf_recalled": false,
+        "insolvency": false,
+        "labor_lawsuits": false,
+        "trustee_loss": false,
+        "gdpr_violations": false
+      }
+    }
+  ]
+}

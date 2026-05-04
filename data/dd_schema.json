@@ -1,0 +1,128 @@
+{
+  "categories": [
+    {
+      "id": "company_basics",
+      "name": "1. Company Basics",
+      "icon": "🏢",
+      "questions": [
+        {"id": "1.1", "text": "Firmenname", "type": "text", "required": true},
+        {"id": "1.2", "text": "Standort (Stadt, PLZ)", "type": "text", "required": true},
+        {"id": "1.3", "text": "Gründungsjahr", "type": "number", "min": 1900, "max": 2026},
+        {"id": "1.4", "text": "Rechtsform", "type": "select", "options": ["GmbH", "GmbH & Co. KG", "OHG", "Einzelunternehmen", "Sonstige"]},
+        {"id": "1.5", "text": "Anzahl Vollzeit-Äquivalente (FTE)", "type": "number", "flag_rule": {"yellow_if_gt": 40, "yellow_text": "Größe ggf. außerhalb Buena Sweet Spot"}},
+        {"id": "1.6", "text": "Anzahl Gesellschafter", "type": "number", "flag_rule": {"yellow_if_gt": 4, "yellow_text": "Komplexe Eigentümerstruktur"}},
+        {"id": "1.7", "text": "Ist ein Mehrheitsgesellschafter vorhanden (>50%)?", "type": "boolean", "show_if": {"q": "1.6", "gt": 1}, "flag_rule": {"yellow_if": false, "yellow_text": "Kein klarer Entscheider"}},
+        {"id": "1.8", "text": "Alter des Hauptgesellschafters / Geschäftsführers", "type": "number", "flag_rule": {"green_if_gt": 60, "green_text": "Nachfolge-Trigger wahrscheinlich"}},
+        {"id": "1.9", "text": "Verkaufsmotivation", "type": "select", "options": ["Nachfolge", "Strategischer Exit", "Finanzielle Notlage", "Andere"], "flag_rule": {"red_if_eq": "Finanzielle Notlage", "red_text": "DD-Tiefe erhöhen"}},
+        {"id": "1.10", "text": "Geplanter Übergangszeitraum nach Verkauf", "type": "select", "options": ["<3 Monate", "3-12 Monate", "12-24 Monate", "> 24 Monate"], "flag_rule": {"red_if_eq": "<3 Monate", "red_text": "Operations-Risiko ohne Knowledge-Transfer"}}
+      ]
+    },
+    {
+      "id": "portfolio",
+      "name": "2. Property Portfolio",
+      "icon": "🏘️",
+      "questions": [
+        {"id": "2.1", "text": "Anzahl verwaltete Units total", "type": "number", "required": true},
+        {"id": "2.2", "text": "Davon WEG-Verwaltung (%)", "type": "number", "min": 0, "max": 100},
+        {"id": "2.3", "text": "Davon Mietverwaltung (%)", "type": "number", "min": 0, "max": 100},
+        {"id": "2.4", "text": "Davon Sondereigentumsverwaltung (%)", "type": "number", "min": 0, "max": 100},
+        {"id": "2.5", "text": "Davon Gewerbeverwaltung (%)", "type": "number", "min": 0, "max": 100, "flag_rule": {"yellow_if_gt": 30, "yellow_text": "Gewerbe-Spezifika erfordern Detail-DD"}},
+        {"id": "2.6", "text": "Durchschnittliche Vertragslaufzeit Gewerbe (Jahre)", "type": "number", "show_if": {"q": "2.5", "gt": 30}},
+        {"id": "2.7", "text": "Anteil indexierter Mietverträge (%)", "type": "number", "show_if": {"q": "2.5", "gt": 30}},
+        {"id": "2.8", "text": "Anzahl WEGs / Eigentümergemeinschaften", "type": "number"},
+        {"id": "2.9", "text": "Geographische Streuung (max. Distanz zwischen Objekten in km)", "type": "number", "flag_rule": {"yellow_if_gt": 200, "yellow_text": "Geo-Komplexität"}},
+        {"id": "2.10", "text": "Hauptstandort (1 Stadt = >70% der Units)?", "type": "boolean"}
+      ]
+    },
+    {
+      "id": "customers",
+      "name": "3. Customer & Contracts",
+      "icon": "📑",
+      "questions": [
+        {"id": "3.1", "text": "Anzahl aktive Verwaltungsverträge", "type": "number"},
+        {"id": "3.2", "text": "Top-1 Kunde: % vom Umsatz", "type": "number", "flag_rule": {"yellow_if_gt": 15, "red_if_gt": 25, "yellow_text": "Konzentration", "red_text": "Hohe Konzentration"}},
+        {"id": "3.3", "text": "Top-3 Kunden zusammen: % vom Umsatz", "type": "number", "flag_rule": {"yellow_if_gt": 35, "red_if_gt": 50, "yellow_text": "Konzentration", "red_text": "Sehr hohe Konzentration"}},
+        {"id": "3.4", "text": "Durchschnittliche Vertragslaufzeit (Jahre)", "type": "number", "flag_rule": {"yellow_if_lt": 2, "yellow_text": "Re-Negotiation-Risiko"}},
+        {"id": "3.5", "text": "Standardkündigungsfrist (Monate)", "type": "number"},
+        {"id": "3.6", "text": "Gibt es Sondervereinbarungen / non-Standard Verträge?", "type": "boolean"},
+        {"id": "3.7", "text": "Anzahl Verträge mit Sondervereinbarungen", "type": "number", "show_if": {"q": "3.6", "eq": true}},
+        {"id": "3.8", "text": "Beschreibung häufigster Sondervereinbarungen", "type": "textarea", "show_if": {"q": "3.6", "eq": true}},
+        {"id": "3.9", "text": "Net Revenue Retention der letzten 12 Monate (%)", "type": "number", "flag_rule": {"red_if_lt": 90, "yellow_if_lt": 95, "red_text": "Hohe Churn", "yellow_text": "Churn-Aufmerksamkeit"}},
+        {"id": "3.10a", "text": "Vertragsverluste letzte 24 Monate (Anzahl)", "type": "number"},
+        {"id": "3.10b", "text": "Vertragsverluste letzte 24 Monate (Units)", "type": "number"},
+        {"id": "3.11", "text": "Bestand vs. Neugeschäft: % Umsatz aus Verträgen >5 Jahre alt", "type": "number"},
+        {"id": "3.12", "text": "Pricing-Range (€ pro Unit pro Monat, Min-Max)", "type": "text"},
+        {"id": "3.13a", "text": "Letzte Preiserhöhung (Jahr)", "type": "number"},
+        {"id": "3.13b", "text": "Letzte Preiserhöhung (durchschnittlicher %)", "type": "number"}
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "4. Operations & Tech-Stack",
+      "icon": "⚙️",
+      "questions": [
+        {"id": "4.1", "text": "Primäre Verwaltungssoftware", "type": "select", "options": ["Domus", "Karthago", "Wodis Sigma", "Hausperle", "immoware24", "Stratis", "Eigenbau", "Excel/Word", "Sonstige"], "flag_rule": {"red_if_eq": "Excel/Word", "yellow_if_eq": "Eigenbau", "red_text": "Migrations-Komplexität extrem", "yellow_text": "Custom-Software, hoher Mapping-Aufwand"}},
+        {"id": "4.2", "text": "Cloud-basiert oder On-Premise?", "type": "select", "options": ["Cloud", "On-Prem", "Hybrid"], "flag_rule": {"yellow_if_eq": "On-Prem", "yellow_text": "Datenexport-Komplexität"}},
+        {"id": "4.3", "text": "Wie alt ist die aktuelle Software-Installation (Jahre)?", "type": "number"},
+        {"id": "4.4", "text": "Existiert ein Owner-Portal / digitale Kommunikation für Eigentümer?", "type": "boolean", "flag_rule": {"green_if": false, "green_text": "Buena-Plattform = sofortiger Service-Upgrade"}},
+        {"id": "4.5", "text": "Anteil Eigentümer mit aktiver E-Mail-Kommunikation (%)", "type": "number"},
+        {"id": "4.6", "text": "Bankanbindung: Wie wird Zahlungsverkehr abgewickelt?", "type": "select", "options": ["Vollautomatisch via API", "Halb-automatisch via Online-Banking", "Manuell"]},
+        {"id": "4.7", "text": "Buchhaltung intern oder ausgelagert?", "type": "select", "options": ["Intern", "Steuerberater extern", "Mix"]},
+        {"id": "4.8", "text": "Anzahl verschiedener Software-Tools im Tagesablauf", "type": "number", "flag_rule": {"yellow_if_gt": 6, "yellow_text": "Hohe Tool-Fragmentierung"}},
+        {"id": "4.9", "text": "Existiert eine IT-Dokumentation / Prozessbeschreibung?", "type": "boolean", "flag_rule": {"yellow_if": false, "yellow_text": "Knowledge-Transfer-Risiko"}},
+        {"id": "4.10", "text": "Anteil digital archivierter WEG-Protokolle (%)", "type": "number"},
+        {"id": "4.11", "text": "Welche Workflows sind aktuell manuell und zeitintensiv?", "type": "multiselect", "options": ["Nebenkostenabrechnung", "Mahnwesen", "WEG-Beschluss-Umsetzung", "Mängelmanagement", "Owner-Reporting", "Andere"]}
+      ]
+    },
+    {
+      "id": "people",
+      "name": "5. People & Org",
+      "icon": "👥",
+      "questions": [
+        {"id": "5.1", "text": "FTE als Property Manager / Verwalter", "type": "number"},
+        {"id": "5.2", "text": "FTE in Buchhaltung / Accounting", "type": "number"},
+        {"id": "5.3", "text": "FTE Sonstige (Sales, Tech, Admin, Management)", "type": "number"},
+        {"id": "5.4", "text": "Durchschnittliches Bruttogehalt Property Manager (€/Jahr)", "type": "number"},
+        {"id": "5.5", "text": "Personalkosten in % vom Umsatz", "type": "number", "flag_rule": {"red_if_gt": 75, "green_if_lt": 50, "red_text": "Margenkomprimierung", "green_text": "Healthy"}},
+        {"id": "5.6", "text": "Mitarbeiterfluktuation letzte 12 Monate (%)", "type": "number", "flag_rule": {"red_if_gt": 25, "red_text": "Stabilitätsrisiko"}},
+        {"id": "5.7", "text": "Aktuelle offene Vakanzen", "type": "number"},
+        {"id": "5.8", "text": "Existiert eine Schlüsselperson, deren Weggang >20% Umsatz gefährden würde?", "type": "boolean", "flag_rule": {"red_if": true, "red_text": "Schlüsselperson-Risiko"}},
+        {"id": "5.9", "text": "Hat diese Person einen Bindungsvertrag / Earn-out im Deal?", "type": "boolean", "show_if": {"q": "5.8", "eq": true}},
+        {"id": "5.10", "text": "Tarifbindungen oder Betriebsvereinbarungen?", "type": "boolean"},
+        {"id": "5.11", "text": "Anzahl Mitarbeiter > 60 Jahre (Pensionsrisiko)", "type": "number"}
+      ]
+    },
+    {
+      "id": "financials",
+      "name": "6. Financials",
+      "icon": "💰",
+      "questions": [
+        {"id": "6.1", "text": "Umsatz Letztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.2", "text": "Umsatz Vorletztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.3", "text": "Umsatz Vor-Vorletztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.4", "text": "EBITDA Letztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.5", "text": "EBITDA Vorletztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.6", "text": "EBITDA Vor-Vorletztes Geschäftsjahr (€)", "type": "number"},
+        {"id": "6.7", "text": "Bestehender Bankkredit / Verbindlichkeiten (€)", "type": "number"},
+        {"id": "6.8", "text": "Offene Forderungen aus L+L > 90 Tage (€)", "type": "number", "flag_rule": {"yellow_text_dynamic": "Wenn > 5% von Umsatz: Working Capital Quality"}},
+        {"id": "6.9", "text": "Treuhänderisch verwaltete Eigentümergelder (€, aktueller Stand)", "type": "number"},
+        {"id": "6.10", "text": "Wurden in den letzten 5 Jahren treuhänderisch verwaltete Mittel falsch verwendet oder gingen verloren?", "type": "boolean", "is_knockout": true},
+        {"id": "6.11", "text": "Laufende Steuerprüfung oder offene steuerliche Verfahren?", "type": "boolean", "flag_rule": {"red_if": true, "red_text": "Steuerliches Risiko, DD vertiefen"}},
+        {"id": "6.12", "text": "BWA / GuV / Bilanz letzte 3 Jahre + aktueller Stand", "type": "file_upload", "ai_trigger": "bwa_to_buena_pnl"}
+      ]
+    },
+    {
+      "id": "knockouts",
+      "name": "7. Knock-Outs",
+      "icon": "🚫",
+      "questions": [
+        {"id": "7.1", "text": "Laufende behördliche Verfahren wegen WEG-Verwaltungsführung?", "type": "boolean", "is_knockout": true},
+        {"id": "7.2", "text": "Geschäftsführer wurde in den letzten 5 Jahren als WEG-Verwalter persönlich abberufen?", "type": "boolean", "is_knockout": true},
+        {"id": "7.3", "text": "Insolvenzverfahren angemeldet oder Insolvenznähe (negatives EK)?", "type": "boolean", "is_knockout": true},
+        {"id": "7.4", "text": "Offene gerichtliche Kündigungsschutz- oder Arbeitsrechtsverfahren > €50k Risiko?", "type": "boolean", "is_knockout": true},
+        {"id": "7.5", "text": "Verluste treuhänderisch verwalteter Eigentümergelder in letzten 5 Jahren?", "type": "boolean", "is_knockout": true},
+        {"id": "7.6", "text": "DSGVO-Verstöße mit behördlicher Aufmerksamkeit in letzten 24 Monaten?", "type": "boolean", "is_knockout": true}
+      ]
+    }
+  ]
+}
